@@ -3,7 +3,7 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
-        
+
         banner: "/*\n" +
                 " * <%= pkg.title || pkg.name %> - v<%= pkg.version %>\n" +
                 " * <%= pkg.description %>\n" +
@@ -12,7 +12,7 @@ module.exports = function(grunt) {
                 " * Made by <%= pkg.author.name %>\n" +
                 " * Under <%= pkg.license %> License\n" +
                 " */\n",
-        
+
         jshint: {
             options: {
                 jshintrc: ".jshintrc"
@@ -41,11 +41,11 @@ module.exports = function(grunt) {
             }
         },
     });
-    
+
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-contrib-concat");
     grunt.loadNpmTasks("grunt-contrib-uglify");
-    
+
     grunt.registerTask("travis", ["jshint"]);
     grunt.registerTask("default", ["jshint", "concat", "uglify"]);
 };

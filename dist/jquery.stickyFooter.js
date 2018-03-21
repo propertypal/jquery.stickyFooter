@@ -29,16 +29,16 @@
 
         this.init();
     }
-    
+
     //do some default shizzle
-    Plugin.prototype.init = function () {     
-    	var obj = this; 
-	     	 
+    Plugin.prototype.init = function () {
+    	var obj = this;
+
 	 	this.footerHeight = 0;
 		this.footerTop = 0;
-		
+
 		obj.positionFooter();
-		
+
     	setTimeout(function(){
             $(window)
                 .scroll(function(){
@@ -47,29 +47,32 @@
                 .resize(function(){
                     obj.positionFooter();
                 });
+            $(document).on("validationerrors success", ".Form", function() {
+              obj.positionFooter();
+            });
         }, 100);
     };
-	
+
 	// set the position
-    Plugin.prototype.positionFooter = function () {           
+    Plugin.prototype.positionFooter = function () {
         var obj = this,
-            $elem = $(this.element); 
+            $elem = $(this.element);
 
         //execute this when the give condition is true
         if(obj.options.executeWhen()) {
             //first reset
             $elem.attr("style", "");
-             
+
             //set footer height
             obj.footerHeight = $elem.height();
 
             //set the top offset
             var offset = $elem.offset();
             offset = offset.top || 0;
-          
+
             // is there a negativ marign?
             if(obj.options.removeNegativMargin && $elem.css("margin-top")[0] === "-") {
-                $elem.css("margin-top", 0); 
+                $elem.css("margin-top", 0);
             }
 
             if ( offset < ($(window).height()-(obj.footerHeight + 20))){
@@ -80,7 +83,7 @@
                     left:0,
                     right:0
                 }, obj.options.css);
-                
+
                 //must stick to bottom
                 $elem.css(css);
             } else {
@@ -89,15 +92,15 @@
                 $elem.css(obj.options.css);
             }
 
-        //otherwhise reset  
+        //otherwhise reset
         } else {
             //reset
             $elem.attr("style", "");
             $elem.css(obj.options.css);
         }
-        
 
-        
+
+
     };
 
     // A really lightweight plugin wrapper around the constructor,

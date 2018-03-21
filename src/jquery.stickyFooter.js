@@ -39,7 +39,7 @@
                 .resize(function(){
                     obj.positionFooter();
                 });
-            $(document).on('validationerrors success', '.Form', function() {
+            $(document).on("validationerrors success", ".Form", function() {
               obj.positionFooter();
             });
         }, 100);
